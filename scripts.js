@@ -2,12 +2,8 @@
 let player1 = "X";
 let player2 = "O";
 let CurrentPlayer = player1;
-  //reset Game
-  let resetGame = document.querySelector("#resetGame");
-  resetGame.addEventListener("click", ( =>{
-    resetGame.value="";
-  }))
-
+let resetButton = document.querySelector("#resetGame");
+let squares = document.querySelectorAll(".square");
 
 for (let i = 1; i <= 9; i++) {
   console.log(i);
@@ -25,6 +21,14 @@ for (let i = 1; i <= 9; i++) {
   console.log("After click");
   gameCell.addEventListener("click", gameCellClick);
 }
+
+resetButton.addEventListener("click", () => {
+  squares.forEach((square) => {
+    square.textContent = "";
+    square.addEventListener("click", gameCellClick);
+  });
+  CurrentPlayer = player1;
+});
 
 //A heading should say whether it is X’s or O’s turn and change with each move made.
 
