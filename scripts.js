@@ -1,6 +1,13 @@
 //When a cell in the grid is clicked, an X or O should appear in that spot depending on whose turn it is.
 let player1 = "X";
 let player2 = "O";
+let CurrentPlayer = player1;
+  //reset Game
+  let resetGame = document.querySelector("#resetGame");
+  resetGame.addEventListener("click", ( =>{
+    resetGame.value="";
+  }))
+
 
 for (let i = 1; i <= 9; i++) {
   console.log(i);
@@ -9,11 +16,10 @@ for (let i = 1; i <= 9; i++) {
 
   let gameCellClick = () => {
     console.log("test", `square${i}`);
-    if (i % 2 === 0) {
-      gameCell.innerHTML = player1;
-    } else if (i % 2 === 1) {
-      gameCell.innerHTML = player2;
-    }
+    gameCell.innerHTML = CurrentPlayer;
+
+    // Ternary operator, if current player is equal to player1, the value of current player will be set to player 2, if it's not equal to player1 it will be set to player1.
+    CurrentPlayer = CurrentPlayer === player1 ? player2 : player1;
     gameCell.removeEventListener("click", gameCellClick);
   };
   console.log("After click");

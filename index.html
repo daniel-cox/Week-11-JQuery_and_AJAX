@@ -5,14 +5,22 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap-grid.css">
-    <link rel="stylesheet" href="main.css">
+    <link
+      rel="stylesheet"
+      href="./node_modules/bootstrap/dist/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="./node_modules/bootstrap/dist/css/bootstrap-grid.css"
+    />
+    <link rel="stylesheet" href="main.css" />
   </head>
   <body>
-    <div class="card" style="width: 40rem; height: 40rem;">
+    <div class="card" style="width: 40rem; height: 40rem">
       <div class="card-body d-flex align-items-center justify-content-center">
-        <button type="button" class="btn btn-warning">Reset Game</button>
+        <button type="button" class="btn btn-warning" id="resetGame">
+          Reset Game
+        </button>
         <div class="tikTakToeGame">
           <div class="square" id="square1"></div>
           <div class="square" id="square2"></div>
@@ -29,6 +37,5 @@
     <script src="./node_modules/jquery/dist/jquery.min.js"></script>
     <script src="./node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
     <script src="./scripts.js"></script>
-
   </body>
 </html>
