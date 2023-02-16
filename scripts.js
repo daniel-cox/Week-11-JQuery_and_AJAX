@@ -83,7 +83,8 @@ $(function () {
 
   // Function to check if the game has tied
   function checkTie() {
-    if (turns === 9) {
+    let lastTurnCheck = checkWin();
+    if (turns === 9 && lastTurnCheck === false) {
       return true;
     }
 
