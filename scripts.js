@@ -1,8 +1,10 @@
 $(function () {
   // Initialize variables
-  var player = "X";
-  var turns = 0;
-  var squareValues = {};
+  let player = "X";
+  let turns = 0;
+  let squareValues = {};
+  let playerTurn = document.getElementById("playerTurn");
+  playerTurn.innerHTML = `<h3>It is player ${player}'s turn</h3>`;
 
   function playGame() {
     // Select all the squares and add click listeners to each one
@@ -17,16 +19,24 @@ $(function () {
       squareValues[$(this).attr("id")] = player;
       turns++;
 
-      // Check if the game has been won or tied
-      if (checkWin() || checkTie()) {
-        console.log("before game ends");
+      // Check if the game has been won
+      if (checkWin()) {
+        //uses a timeout to make it asynchronous
+        setTimeout(function () {
+          endGame();
+        }, 0);
+        return;
+      }
+
+      // Check if the game has been tied
+      if (checkTie()) {
         endGame();
         return;
       }
-      console.log("after game ends");
+
       // Switch to the other player
       player = player === "X" ? "O" : "X";
-      console.log("after player turn");
+      playerTurn.innerHTML = `<h3>It is player ${player}'s turn</h3>`;
     });
 
     // Add click listener to the reset button
@@ -34,6 +44,7 @@ $(function () {
       resetGame();
     });
   }
+
   playGame();
   console.log("after Play game");
   // Function to check if the game has been won
@@ -89,11 +100,11 @@ $(function () {
   // Function to reset the game
   function resetGame() {
     $(".square").text("");
-    $(".square").on("click");
+    $(".square").off("click");
     player = "X";
     turns = 0;
     squareValues = {};
     playGame();
-    console.log("Game is reset");
+    console.log("The game is reset");
   }
 });
