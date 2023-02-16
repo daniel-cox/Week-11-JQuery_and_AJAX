@@ -1,0 +1,44 @@
+//When a cell in the grid is clicked, an X or O should appear in that spot depending on whose turn it is.
+let player1 = "X";
+let player2 = "O";
+let CurrentPlayer = player1;
+let resetButton = document.querySelector("#resetGame");
+let squares = document.querySelectorAll(".square");
+
+// Function to add the gameCellClick event listener to the cells
+function addCellListeners() {
+  squares.forEach((square, index) => {
+    square.addEventListener("click", () => {
+      console.log(`Clicked ${square.id}`);
+      square.innerHTML = CurrentPlayer;
+      CurrentPlayer = CurrentPlayer === player1 ? player2 : player1;
+    });
+  });
+}
+
+// Set up initial cell event listeners
+addCellListeners();
+
+// Reset button event listener
+resetButton.addEventListener("click", () => {
+  squares.forEach((square) => {
+    square.textContent = "";
+  });
+  CurrentPlayer = player1;
+  // Add event listeners back to cells
+  addCellListeners();
+});
+
+square.celladdEventListener("click", () => {
+  removeEventListener();
+});
+//In this modified version of the code, the addCellListeners() function is defined at the beginning of the script. This function adds the gameCellClick event listener to the cells using the addEventListener() method. The function is called twice: once during the initial cell setup loop, and once in the reset button event listener.
+
+//In the reset button event listener, the cells are cleared and the CurrentPlayer variable is reset to player1, but the event listeners are not removed. Instead, the addCellListeners() function is called to add the event listeners back to the cells. This ensures that the cells will respond to clicks and allow the game to be played again.
+
+//A heading should say whether it is X’s or O’s turn and change with each move made.
+
+//A button should be available to clear the grid and restart the game.
+
+//When a player has won, or the board is full and the game results in a draw, a Bootstrap alert or
+//similar Bootstrap component should appear across the screen announcing the winner

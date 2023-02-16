@@ -1,87 +1,92 @@
 @font-face {
-    font-family: "pencilregular";
-    src: url("./Pencil.woff") format("woff");
-    font-weight: normal;
-    font-style: normal;
-  }
+  font-family: "pencilregular";
+  src: url("./Pencil.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
 
 /*aligns board to the center of the page*/
-body{
-    background-image: url(./img/desk.jpg);
-    background-repeat: no-repeat;
-    background-size:cover;
-    display: flex;
-    align-items: center;
-    height: 100vh;
+body {
+  background-image: url(./img/desk.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  height: 100vh;
 }
 
-.card{ margin: 0 auto;}
-
-button{
-    opacity: 0.7;
-    font-family: pencilregular;
+.square {
+  caret-color: transparent;
+  cursor: url("./img/dpencil.png"), default;
 }
 
-
-.card-body{
-    background-image: url(./img/notebookpaper.jpg);
-    box-shadow: -10px 10px 12px 2px #41220f;
+.card {
+  margin: 0 auto;
 }
 
-    /*sets width and layout of board game*/
+button {
+  opacity: 0.7;
+  font-family: pencilregular;
+}
+
+.card-body {
+  background-image: url(./img/notebookpaper.jpg);
+  box-shadow: -10px 10px 12px 2px #41220f;
+}
+
+/*sets width and layout of board game*/
 .tikTakToeGame {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    width: 300px;
-    margin: 0 auto;
-    font-family: pencilregular;
-  }
-    /*defines board dimensions and board color*/
-  .tikTakToeGame .square {
-    border: 3px solid #000;
-    font-size: 6em;
-    line-height: 100px;
-    text-align: center;
-    width: 100px;
-    height: 100px;
-    opacity: 0.5;
-  }
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 300px;
+  margin: 0 auto;
+  font-family: pencilregular;
+}
+/*defines board dimensions and board color*/
+.tikTakToeGame .square {
+  border: 3px solid #000;
+  font-size: 6em;
+  line-height: 100px;
+  text-align: center;
+  width: 100px;
+  height: 100px;
+  opacity: 0.5;
+}
 
 /*removes unneeded border around game board*/
-  #square1 {
-    border-left: none;
-    border-top: none;
+#square1 {
+  border-left: none;
+  border-top: none;
 }
 
 #square2 {
-    border-top: none;
+  border-top: none;
 }
 
 #square3 {
-    border-right: none;
-    border-top: none;
+  border-right: none;
+  border-top: none;
 }
 
 #square4 {
-    border-left: none;
+  border-left: none;
 }
 
 #square6 {
-    border-right: none;
+  border-right: none;
 }
 
 #square7 {
-    border-left: none;
-    border-bottom: none;
-
+  border-left: none;
+  border-bottom: none;
 }
 
 #square8 {
-    border-bottom: none;
+  border-bottom: none;
 }
 
 #square9 {
-    border-right: none;
-    border-bottom: none;
+  border-right: none;
+  border-bottom: none;
 }

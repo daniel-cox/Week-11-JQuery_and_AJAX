@@ -1,38 +1,99 @@
-//When a cell in the grid is clicked, an X or O should appear in that spot depending on whose turn it is.
-let player1 = "X";
-let player2 = "O";
-let CurrentPlayer = player1;
-let resetButton = document.querySelector("#resetGame");
-let squares = document.querySelectorAll(".square");
+$(function () {
+  // Initialize variables
+  var player = "X";
+  var turns = 0;
+  var squareValues = {};
 
-for (let i = 1; i <= 9; i++) {
-  console.log(i);
-  let gameCell = document.getElementById(`square${i}`);
-  console.log("Before click");
+  function playGame() {
+    // Select all the squares and add click listeners to each one
+    $(".square").on("click", function () {
+      // Check if the square has already been clicked
+      if ($(this).text() !== "") {
+        return;
+      }
 
-  let gameCellClick = () => {
-    console.log("test", `square${i}`);
-    gameCell.innerHTML = CurrentPlayer;
+      // Add the player's mark to the square and update variables
+      $(this).text(player);
+      squareValues[$(this).attr("id")] = player;
+      turns++;
 
-    // Ternary operator, if current player is equal to player1, the value of current player will be set to player 2, if it's not equal to player1 it will be set to player1.
-    CurrentPlayer = CurrentPlayer === player1 ? player2 : player1;
-    gameCell.removeEventListener("click", gameCellClick);
-  };
-  console.log("After click");
-  gameCell.addEventListener("click", gameCellClick);
-}
+      // Check if the game has been won or tied
+      if (checkWin() || checkTie()) {
+        console.log("before game ends");
+        endGame();
+        return;
+      }
+      console.log("after game ends");
+      // Switch to the other player
+      player = player === "X" ? "O" : "X";
+      console.log("after player turn");
+    });
 
-resetButton.addEventListener("click", () => {
-  squares.forEach((square) => {
-    square.textContent = "";
-    square.addEventListener("click", gameCellClick);
-  });
-  CurrentPlayer = player1;
+    // Add click listener to the reset button
+    $("#resetGame").on("click", function () {
+      resetGame();
+    });
+  }
+  playGame();
+  console.log("after Play game");
+  // Function to check if the game has been won
+  function checkWin() {
+    if (
+      (squareValues.square1 === player &&
+        squareValues.square2 === player &&
+        squareValues.square3 === player) ||
+      (squareValues.square4 === player &&
+        squareValues.square5 === player &&
+        squareValues.square6 === player) ||
+      (squareValues.square7 === player &&
+        squareValues.square8 === player &&
+        squareValues.square9 === player) ||
+      (squareValues.square1 === player &&
+        squareValues.square4 === player &&
+        squareValues.square7 === player) ||
+      (squareValues.square2 === player &&
+        squareValues.square5 === player &&
+        squareValues.square8 === player) ||
+      (squareValues.square3 === player &&
+        squareValues.square6 === player &&
+        squareValues.square9 === player) ||
+      (squareValues.square1 === player &&
+        squareValues.square5 === player &&
+        squareValues.square9 === player) ||
+      (squareValues.square3 === player &&
+        squareValues.square5 === player &&
+        squareValues.square7 === player)
+    ) {
+      return true;
+    }
+
+    return false;
+  }
+
+  // Function to check if the game has tied
+  function checkTie() {
+    if (turns === 9) {
+      return true;
+    }
+
+    return false;
+  }
+
+  // Function to end the game and show the winner or tie message
+  function endGame() {
+    $(".square").off("click");
+    let message = checkTie() ? "Tie game!" : player + " wins!";
+    alert(message);
+  }
+
+  // Function to reset the game
+  function resetGame() {
+    $(".square").text("");
+    $(".square").on("click");
+    player = "X";
+    turns = 0;
+    squareValues = {};
+    playGame();
+    console.log("Game is reset");
+  }
 });
-
-//A heading should say whether it is X’s or O’s turn and change with each move made.
-
-//A button should be available to clear the grid and restart the game.
-
-//When a player has won, or the board is full and the game results in a draw, a Bootstrap alert or
-//similar Bootstrap component should appear across the screen announcing the winner
