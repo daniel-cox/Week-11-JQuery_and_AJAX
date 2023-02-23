@@ -7,7 +7,7 @@ $(function () {
   playerTurn.innerHTML = `<h3>It is player ${player}'s turn</h3>`;
 
   function playGame() {
-    // Select all the squares and add click listeners to each one
+    //NOTE Select all the squares and add click listeners to each one
     $(".square").on("click", function () {
       // Check if the square has already been clicked
       if ($(this).text() !== "") {
@@ -21,7 +21,7 @@ $(function () {
 
       // Check if the game has been won
       if (checkWin()) {
-        //uses a timeout to make it asynchronous
+        //NOTE uses a timeout to make it asynchronous
         setTimeout(function () {
           endGame();
         }, 0);
@@ -46,8 +46,8 @@ $(function () {
   }
 
   playGame();
-  console.log("after Play game");
-  // Function to check if the game has been won
+  //console.log("after Play game");
+  //NOTE - checks the value of the square with the players symbol to determine the winner, if any winning combo matches it returns true. Otherwise it will return falue indicating the player has yet to win.
   function checkWin() {
     if (
       (squareValues.square1 === player &&
@@ -106,6 +106,6 @@ $(function () {
     turns = 0;
     squareValues = {};
     playGame();
-    console.log("The game is reset");
+    //console.log("The game is reset");
   }
 });
